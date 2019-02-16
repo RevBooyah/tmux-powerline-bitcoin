@@ -31,8 +31,8 @@ run_segment() {
         fi
 
         if [ -z "$bitcoin" ]; then
-                bitcoin=`curl -s https://coinbase.com/api/v1/prices/spot_rate | sed -e 's/^.*"amount":"\([^"]*\)".*$/\1/'`
-
+                #bitcoin=`curl -s https://coinbase.com/api/v1/prices/spot_rate | sed -e 's/^.*"amount":"\([^"]*\)".*$/\1/'`
+                bitcoin=`curl -s https://api.coinbase.com/v2/prices/spot?currency=USD | sed -e 's/^.*"amount":"\([^"]*\)".*$/\1/'`
                 if [ "$?" -eq "0" ]; then
                         echo "${bitcoin}" > $tmp_file
                 elif [ -f "${tmp_file}" ]; then
